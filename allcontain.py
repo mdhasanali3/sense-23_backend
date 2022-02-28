@@ -1330,6 +1330,9 @@ if __name__ == "__main__":
    
     optdetect = parse_optdetect()
     maindetect(optdetect)
+    
+    
+
    
 
 

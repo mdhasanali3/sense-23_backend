@@ -8,7 +8,7 @@ import shutil
 import random
 import glob
 import yaml
-
+import csv
 
 app = Flask(__name__)
 
@@ -24,7 +24,9 @@ parameter_save=True
 def save_api(file_id):
     image_label_data=request.get_data()   
     curr_dir=os.getcwd()
-    os.makedirs('dataset')
+    os.chdir('sense-23_backend')
+    if os.path.isdir('dataset') is False:
+        os.makedirs('dataset')
     os.chdir('dataset')
     
     with open(file_id, "wb") as code:
@@ -114,15 +116,28 @@ def save_api(file_id):
 def hyp_api():
     
     parameter_json = request.get_json()
-   
+    os.chdir('sense-23_backend')
+    
     with open("parameter_json.json", "w") as outfile:
         json.dump(parameter_json, outfile)
 
     
     subprocess.run("ls")
-    subprocess.run(['python', 'allcontain.py'])
+    subprocess.run(['python', 'allcontain.py'],shell=True)
+    
+        
+    with open('C:/Users/hasan/Downloads/results.csv') as file:
+        csreader = csv.reader(file)
+        next(csreader)
+        data=[]
+        for row in csreader:
+            data.append({'epoch':row[0],
+            'precision':row[4],
+            'recall':row[5]
+            })
 
-    return jsonify("done from flask parameter")
+
+    return jsonify("done from flask parameter",data)
 
 
 @app.route('/prediction',methods=['POST','GET'])
