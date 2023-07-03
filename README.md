@@ -1,4 +1,7 @@
 <div align="center">
+<p>check the full training process https://youtu.be/Zj-NAD1h8nY</p>
+<p>check inference https://youtu.be/4XB2Jq11B2o </p>
+<p>Run with frontend https://github.com/mdhasanali3/sense-23 </p>
 <p>
    <a align="left" href="https://ultralytics.com/yolov5" target="_blank">
    <img width="850" src="https://github.com/ultralytics/yolov5/releases/download/v1.0/splash.jpg"></a>
